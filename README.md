@@ -1,6 +1,6 @@
-# HeroesApp
+# LifecycleApp
 
-## HeroesApp README
+## LifecycleApp README
 
 This app is a personal example about lifecycle angular framework. This app has not a real functionality, It was created to try different lifecycle angular and as a cheat sheet.
 
