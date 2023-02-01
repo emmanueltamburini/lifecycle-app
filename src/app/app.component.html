@@ -1,0 +1,114 @@
+<h1>Angular lifecycle</h1>
+<hr>
+<button (click)="onHide()">
+  {{show? 'Hide': 'Show'}}
+</button>
+<app-principal *ngIf="show"></app-principal>
+
+<hr>
+
+<table>
+  <thead>
+  <tr>
+  <th align="left">Hook method</th>
+  <th align="left">Purpose</th>
+  <th align="left">Timing</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td align="left"><code>ngOnChanges()</code></td>
+  <td align="left">Respond when Angular sets or resets data-bound input properties. The method receives a <code><a href="api/core/SimpleChanges" class="code-anchor">SimpleChanges</a></code> object of current and previous property values. <br> <div class="alert is-helpful"> <strong>NOTE</strong>: <br> This happens frequently, so any operation you perform here impacts performance significantly. </div> See details in <a href="guide/lifecycle-hooks#onchanges">Using change detection hooks</a> in this document.</td>
+  <td align="left">Called before <code>ngOnInit()</code> (if the component has bound inputs) and whenever one or more data-bound input properties change. <br> <div class="alert is-helpful"> <strong>NOTE</strong>: <br> If your component has no inputs or you use it without providing any inputs, the framework will not call <code>ngOnChanges()</code>. </div></td>
+  </tr>
+  <tr>
+  <td align="left"><code>ngOnInit()</code></td>
+  <td align="left">Initialize the directive or component after Angular first displays the data-bound properties and sets the directive or component's input properties. See details in <a href="guide/lifecycle-hooks#oninit">Initializing a component or directive</a> in this document.</td>
+  <td align="left">Called once, after the first <code>ngOnChanges()</code>. <code>ngOnInit()</code> is still called even when <code>ngOnChanges()</code> is not (which is the case when there are no template-bound inputs).</td>
+  </tr>
+  <tr>
+  <td align="left"><code>ngDoCheck()</code></td>
+  <td align="left">Detect and act upon changes that Angular can't or won't detect on its own. See details and example in <a href="guide/lifecycle-hooks#docheck">Defining custom change detection</a> in this document.</td>
+  <td align="left">Called immediately after <code>ngOnChanges()</code> on every change detection run, and immediately after <code>ngOnInit()</code> on the first run.</td>
+  </tr>
+  <tr>
+  <td align="left"><code>ngAfterContentInit()</code></td>
+  <td align="left">Respond after Angular projects external content into the component's view, or into the view that a directive is in. <br> See details and example in <a href="guide/lifecycle-hooks#aftercontent">Responding to changes in content</a> in this document.</td>
+  <td align="left">Called <em>once</em> after the first <code>ngDoCheck()</code>.</td>
+  </tr>
+  <tr>
+  <td align="left"><code>ngAfterContentChecked()</code></td>
+  <td align="left">Respond after Angular checks the content projected into the directive or component. <br> See details and example in <a href="guide/lifecycle-hooks#aftercontent">Responding to projected content changes</a> in this document.</td>
+  <td align="left">Called after <code>ngAfterContentInit()</code> and every subsequent <code>ngDoCheck()</code>.</td>
+  </tr>
+  <tr>
+  <td align="left"><code>ngAfterViewInit()</code></td>
+  <td align="left">Respond after Angular initializes the component's views and child views, or the view that contains the directive. <br> See details and example in <a href="guide/lifecycle-hooks#afterview">Responding to view changes</a> in this document.</td>
+  <td align="left">Called <em>once</em> after the first <code>ngAfterContentChecked()</code>.</td>
+  </tr>
+  <tr>
+  <td align="left"><code>ngAfterViewChecked()</code></td>
+  <td align="left">Respond after Angular checks the component's views and child views, or the view that contains the directive.</td>
+  <td align="left">Called after the <code>ngAfterViewInit()</code> and every subsequent <code>ngAfterContentChecked()</code>.</td>
+  </tr>
+  <tr>
+  <td align="left"><code>ngOnDestroy()</code></td>
+  <td align="left">Cleanup just before Angular destroys the directive or component. Unsubscribe Observables and detach event handlers to avoid memory leaks. See details in <a href="guide/lifecycle-hooks#ondestroy">Cleaning up on instance destruction</a> in this document.</td>
+  <td align="left">Called immediately before Angular destroys the directive or component.</td>
+  </tr>
+  </tbody>
+  </table>
+
+
+  <hr>
+  <table>
+    <thead>
+    <tr>
+    <th align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">método de gancho</font></font></th>
+    <th align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Objetivo</font></font></th>
+    <th align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Momento</font></font></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td align="left"><code>ngOnChanges()</code></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Responda cuando Angular establece o restablece las propiedades de entrada vinculadas a datos. </font><font style="vertical-align: inherit;">El método recibe un </font></font><code><a href="api/core/SimpleChanges" class="code-anchor">SimpleChanges</a></code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">objeto de valores de propiedad actuales y anteriores.</font></font><br> <div class="alert is-helpful"> <strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NOTA</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> : </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esto sucede con frecuencia, por lo que cualquier operación que realice aquí afecta significativamente el rendimiento.</font></font></div><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Consulte los detalles en </font></font><a href="guide/lifecycle-hooks#onchanges"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Uso de ganchos de detección de cambios</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> en este documento.</font></font></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Llamado antes </font></font><code>ngOnInit()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(si el componente tiene entradas enlazadas) y cada vez que cambian una o más propiedades de entrada enlazadas a datos.</font></font><br> <div class="alert is-helpful"> <strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NOTA</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> : </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Si su componente no tiene entradas o lo usa sin proporcionar ninguna entrada, el marco no llamará </font></font><code>ngOnChanges()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.</font></font></div></td>
+    </tr>
+    <tr>
+    <td align="left"><code>ngOnInit()</code></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Inicialice la directiva o el componente después de que Angular primero muestre las propiedades vinculadas a los datos y establezca las propiedades de entrada de la directiva o el componente. </font><font style="vertical-align: inherit;">Consulte los detalles en </font></font><a href="guide/lifecycle-hooks#oninit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Inicialización de un componente o directiva</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> en este documento.</font></font></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Llamado una vez, después del primero </font></font><code>ngOnChanges()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">. </font></font><code>ngOnInit()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">todavía se llama incluso cuando </font></font><code>ngOnChanges()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">no lo es (que es el caso cuando no hay entradas vinculadas a la plantilla).</font></font></td>
+    </tr>
+    <tr>
+    <td align="left"><code>ngDoCheck()</code></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Detecte y actúe sobre los cambios que Angular no puede o no detectará por sí solo. </font><font style="vertical-align: inherit;">Consulte los detalles y el ejemplo en </font></font><a href="guide/lifecycle-hooks#docheck"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Definición de la detección de cambios personalizados</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> en este documento.</font></font></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Llamado inmediatamente después </font></font><code>ngOnChanges()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">de cada ejecución de detección de cambios e inmediatamente después </font></font><code>ngOnInit()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">de la primera ejecución.</font></font></td>
+    </tr>
+    <tr>
+    <td align="left"><code>ngAfterContentInit()</code></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Responda después de que Angular proyecte contenido externo en la vista del componente o en la vista en la que se encuentra una directiva. </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Consulte los detalles y el ejemplo en </font></font><a href="guide/lifecycle-hooks#aftercontent"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Responder a los cambios en el contenido</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> de este documento.</font></font></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Llamado </font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">una vez</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> después de la primera </font></font><code>ngDoCheck()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.</font></font></td>
+    </tr>
+    <tr>
+    <td align="left"><code>ngAfterContentChecked()</code></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Responda después de que Angular verifique el contenido proyectado en la directiva o el componente. </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Consulte los detalles y el ejemplo en </font></font><a href="guide/lifecycle-hooks#aftercontent"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Responder a los cambios de contenido proyectados</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> en este documento.</font></font></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Llamado después </font></font><code>ngAfterContentInit()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">y cada posterior </font></font><code>ngDoCheck()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.</font></font></td>
+    </tr>
+    <tr>
+    <td align="left"><code>ngAfterViewInit()</code></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Responda después de que Angular inicialice las vistas del componente y las vistas secundarias, o la vista que contiene la directiva. </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ver detalles y ejemplo en </font></font><a href="guide/lifecycle-hooks#afterview"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Respondiendo para ver cambios</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> en este documento.</font></font></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Llamado </font></font><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">una vez</font></font></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> después de la primera </font></font><code>ngAfterContentChecked()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.</font></font></td>
+    </tr>
+    <tr>
+    <td align="left"><code>ngAfterViewChecked()</code></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Responda después de que Angular verifique las vistas del componente y las vistas secundarias, o la vista que contiene la directiva.</font></font></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Llamado después de </font></font><code>ngAfterViewInit()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">y cada subsiguiente </font></font><code>ngAfterContentChecked()</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.</font></font></td>
+    </tr>
+    <tr>
+    <td align="left"><code>ngOnDestroy()</code></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Limpieza justo antes de que Angular destruya la directiva o el componente. </font><font style="vertical-align: inherit;">Anule la suscripción de Observables y separe los controladores de eventos para evitar pérdidas de memoria. </font><font style="vertical-align: inherit;">Consulte los detalles en </font></font><a href="guide/lifecycle-hooks#ondestroy"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Limpieza de la destrucción de instancias</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> en este documento.</font></font></td>
+    <td align="left"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Llamado inmediatamente antes de que Angular destruya la directiva o el componente.</font></font></td>
+    </tr>
+    </tbody>
+    </table>
